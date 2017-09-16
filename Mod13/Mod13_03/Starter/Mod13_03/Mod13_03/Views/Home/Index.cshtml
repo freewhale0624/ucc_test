@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <input type="text" id="username" />
+        <input type="button" id="btnConnect" value="connect" />
+        <input type="button" id="btnClose" value="close" />
+
+        <hr />
+        <input type="text" id="message" />
+        <input type="button" id="btnSend" value="send" />
+        <ul id="output"></ul>
+
+    </div>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#btnConnect").click(function () {
+                var url = "ws://localhost:2577/api/chat?username=" + $("#username").val();
+                this.disabled = true;
+                var ws = new WebSocket(url);
+
+                $("#btnSend").click(function () {
+                    ws.send($("#message").val());
+                });
+
+                ws.onopen = function () {
+                    ws.send("connect");
+                };
+                ws.onerror = function (e) {
+                    alert(e.message);
+                }
+                ws.onmessage = function (e) {
+                    $("#output").append($("<li>").text(e.data));
+                    console.log("message");
+                }
+
+                $("#btnClose").click(function () {
+                    ws.send("88");
+                    ws.close();
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
