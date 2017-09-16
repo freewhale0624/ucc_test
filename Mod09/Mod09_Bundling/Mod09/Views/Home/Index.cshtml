@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+</head>
+<body>
+    <div> 
+
+        <input type="text" id="text1" />
+        <input type="button" value="Click"  id="button1"  />
+
+
+    </div>
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+
+    <script>
+            //function clickme() {
+            //    alert("Hi");
+            //}
+
+            //document.getElementById("button1").onclick = function () {
+            //    alert("Hi");
+            //}
+
+            //document.getElementById("button1").addEventListener("click",
+            //    function () {
+            //        alert("Hi, " + document.getElementById("text1").value);
+            //    });
+
+        $(function () { //Ready事件
+            $("#button1").click(function () {
+                alert("Hi, " + $("#text1").val());
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+
+        @*<video src="/Home/GetVideo" autoplay></video>*@
+
+        @*<video src="@Url.Action("GetVideo")" autoplay></video>*@
+
+        <video controls="controls">
+            <source src="@Url.Action("GetVideo")" type="video/mp4" />
+        </video>
+    </div>
+</body>
+</html>

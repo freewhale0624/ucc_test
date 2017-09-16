@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        @Html.MvcSiteMap().Menu()
+        <hr />
+        @Html.MvcSiteMap().SiteMapPath()
+
+        @RenderBody()
+    </div>
+
+    @if (IsSectionDefined("scripts"))
+    {
+        @RenderSection("scripts", false)
+    }
+    else
+    {
+        <h3>沒有scripts</h3> @*預設值*@
+    }
+</body>
+</html>

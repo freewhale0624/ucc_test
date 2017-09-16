@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+
+        @*Install-Package jQuery -Version 3.1.1*@
+        @*Install-Package Microsoft.jQuery.Unobtrusive.Ajax -Version 3.2.3*@
+
+
+        Server Time:@DateTime.Now
+        <div id="divMessage" style="background-color:yellow">
+
+        </div>
+        <hr />
+
+
+        @Html.ActionLink("refresh", "HelloWorld")
+        <hr />
+        @Html.Action("HelloWorld")
+
+        @Ajax.ActionLink("AJAXrefresh", "HelloWorld",
+            new AjaxOptions
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "divMessage",
+                InsertionMode = InsertionMode.Replace
+            })
+        <hr />
+        @Ajax.ActionLink("AJAXrefresh2", "HelloWorld2", new { userName = "Mary" },
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "divMessage",
+                InsertionMode = InsertionMode.Replace
+            })
+
+      
+        <hr />
+        @using (Ajax.BeginForm("HelloWorld2",
+                     new AjaxOptions
+                     {
+                         HttpMethod = "GET",
+                         UpdateTargetId = "divMessage",
+                         InsertionMode = InsertionMode.Replace
+                     }))
+        {
+            <input type="text" name="userName" />
+            <input type="submit" />
+        }
+
+
+
+
+    </div>
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+</body>
+</html>

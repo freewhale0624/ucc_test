@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DemoDropdownlist</title>
+</head>
+<body>
+    <div> 
+
+        
+        @* 1 *@
+        @using (Html.BeginForm())
+        {
+            @Html.DropDownList("source")
+            //2
+            <input type="submit" name="name" />
+        }
+
+        <br />
+
+        @*4*@
+        @(ViewBag.select??"none")
+
+
+
+        @*@Html.ListBox("source")*@
+    </div>
+</body>
+</html>
