@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ApplicationDemo</title>
+</head>
+<body>
+    <div> 
+        @HttpContext.Current.Application["count"]
+    </div>
+</body>
+</html>

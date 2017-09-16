@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+
+        <ul id="list"></ul>
+
+        <form id="form1">
+            Id : <input type="text" id="id" name="Id" /> <br />
+            Name : <input type="text" id="name" name="Name" /><br />
+            <input type="button" id="btnList" value="List" />
+            <input type="button" id="btnGet" value="Get" />
+
+            <input type="button" id="btnInsert" value="Insert" />
+            <input type="button" id="btnUpdate" value="Update" />
+            <input type="button" id="btnDelete" value="Delete" />
+        </form>
+
+
+
+    </div>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#btnList").click(function () {
+                $("#list").empty();
+                $.ajax({
+                    type: "GET",
+                    url: "/api/course",
+                    success: function (data) {
+                        data.forEach(function (item) {
+                            $("#list").append($("<li>").text(item.Id + "---" + item.Name));
+                        });
+
+                    }
+                });
+            });
+
+            $("#btnGet").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Content("~/api/course/")" + $("#id").val(),
+                    success: function (data) {
+                        $("#name").val(data.Name);
+                    }
+                });
+            });
+
+
+            $("#btnInsert").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Content("~/api/course/")",
+                    data: $("#form1").serialize()
+                });
+            });
+
+            $("#btnUpdate").click(function () {
+                $.ajax({
+                    type: "PUT",
+                    url: "@Url.Content("~/api/course/")",
+                    data: $("#form1").serialize()
+                });
+            });
+
+            $("#btnDelete").click(function () {
+                $.ajax({
+                    type: "DELETE",
+                    url: "@Url.Content("~/api/course/")" + $("#id").val()
+                });
+            });
+        });
+
+
+
+    </script>
+
+</body>
+</html>
